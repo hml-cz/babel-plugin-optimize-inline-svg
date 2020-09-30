@@ -1,6 +1,6 @@
 {
   "name": "@dmytrohusiev/babel-plugin-optimize-inline-svg",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "A babel plugin that optimizes and inlines SVGs for your react components.",
   "main": "lib/index.js",
   "scripts": {
