@@ -1,6 +1,7 @@
 # gitignore
 node_modules
 lib
+.idea
 
 # Only apps should have lockfiles
 npm-shrinkwrap.json

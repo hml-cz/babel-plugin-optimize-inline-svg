@@ -1,4 +1,7 @@
 {
  "extends": "airbnb",
+ "rules": {
+  "linebreak-style": [1, "windows"]
+ },
  "root": true
 }

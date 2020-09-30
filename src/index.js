@@ -39,9 +39,18 @@ export default declare(({
     `;
 
     if (SVG_NAME !== 'default') {
-      return template(namedTemplate)({ SVG_NAME, SVG_CODE, SVG_DEFAULT_PROPS_CODE });
+      const opts = { SVG_NAME, SVG_CODE };
+      if (SVG_DEFAULT_PROPS_CODE) {
+        opts.SVG_DEFAULT_PROPS_CODE = SVG_DEFAULT_PROPS_CODE;
+      }
+
+      return template(namedTemplate)(opts);
     }
-    return template(anonymousTemplate)({ SVG_CODE, SVG_DEFAULT_PROPS_CODE, EXPORT_FILENAME });
+    const opts = { SVG_CODE, EXPORT_FILENAME };
+    if (SVG_DEFAULT_PROPS_CODE) {
+      opts.SVG_DEFAULT_PROPS_CODE = SVG_DEFAULT_PROPS_CODE;
+    }
+    return template(anonymousTemplate)(opts);
   };
 
   function applyPlugin(importIdentifier, importPath, path, state, isExport, exportFilename) {
@@ -71,7 +80,7 @@ export default declare(({
       const rawSource = readFileSync(svgPath, 'utf8');
       const optimizedSource = state.opts.svgo === false
         ? rawSource
-        : optimize(rawSource, state.opts.svgo);
+        : optimize(rawSource, state.opts.svgo, { filePath: svgPath });
 
       const escapeSvgSource = escapeBraces(optimizedSource);
 
@@ -92,7 +101,7 @@ export default declare(({
       };
 
       // Move props off of element and into defaultProps
-      if (svgCode.openingElement.attributes.length > 1) {
+      if (svgCode.openingElement && svgCode.openingElement.attributes.length > 1) {
         const keepProps = [];
         const defaultProps = [];
 

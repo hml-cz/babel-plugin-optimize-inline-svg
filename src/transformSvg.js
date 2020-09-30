@@ -6,9 +6,10 @@
 import { namespaceToCamel, hyphenToCamel } from './camelize';
 import cssToObj from './cssToObj';
 
-export default t => ({
+export default (t) => ({
   JSXAttribute({ node }) {
     const { name: originalName } = node;
+
     if (t.isJSXNamespacedName(originalName)) {
       // converts
       // <svg xmlns:xlink="asdf">
@@ -33,7 +34,7 @@ export default t => ({
       // <tag style={{textAlign: 'center', width: '50px'}}>
       if (originalName.name === 'style') {
         const csso = cssToObj(node.value.value);
-        const properties = Object.keys(csso).map(prop => t.objectProperty(
+        const properties = Object.keys(csso).map((prop) => t.objectProperty(
           t.identifier(hyphenToCamel(prop)),
           t.stringLiteral(csso[prop]),
         ));
