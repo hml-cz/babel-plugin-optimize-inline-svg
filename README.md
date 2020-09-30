@@ -1,4 +1,4 @@
-# babel-plugin-inline-react-svg
+# babel-plugin-optimize-inline-svg
 
 Transforms imports to SVG files into React Components, and optimizes the SVGs with [SVGO](https://github.com/svg/svgo/).
 
@@ -23,7 +23,7 @@ const MyComponent = () => <CloseSVG />;
 ## Installation
 
 ```
-npm install --save-dev babel-plugin-inline-react-svg
+npm install --save-dev @dmytrohusiev/babel-plugin-optimize-inline-svg
 ```
 
 ## Usage
@@ -35,7 +35,7 @@ npm install --save-dev babel-plugin-inline-react-svg
 ```json
 {
   "plugins": [
-    "inline-react-svg"
+    "optimize-inline-svg"
   ]
 }
 ```
@@ -49,7 +49,7 @@ npm install --save-dev babel-plugin-inline-react-svg
 {
   "plugins": [
     [
-      "inline-react-svg",
+      "optimize-inline-svg",
       {
         "svgo": {
           "plugins": [
@@ -72,7 +72,7 @@ npm install --save-dev babel-plugin-inline-react-svg
 ### Via CLI
 
 ```sh
-$ babel --plugins inline-react-svg script.js
+$ babel --plugins optimize-inline-svg script.js
 ```
 
 ### Via Node API
@@ -81,7 +81,7 @@ $ babel --plugins inline-react-svg script.js
 ```javascript
 require('@babel/core').transform('code', {
   plugins: [
-    ['inline-react-svg', { filename: 'filename representing the code' }],
+    ['optimize-inline-svg', { filename: 'filename representing the code' }],
   ]
 }) // => { code, map, ast };
 ```
